@@ -193,7 +193,7 @@ img {
 .brand-logo-nav {
   display: block;
   width: auto;
-  height: 56px;
+  height: 72px;
   object-fit: contain;
 }
 
@@ -707,7 +707,7 @@ p {
 
 .hero-photo-frame {
   position: relative;
-  width: min(100%, 46rem);
+  width: min(100%, 40rem);
   margin-left: auto;
   margin-right: 0;
   margin-bottom: 0;
@@ -717,12 +717,12 @@ p {
 }
 
 .hero-photo-card {
-  min-height: min(68dvh, 38rem);
   width: 100%;
+  aspect-ratio: 1180 / 1333;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    url("Hero.png") center center/contain no-repeat;
+    url("public/Hero.png") 75% center/contain no-repeat;
   background-color: #0d1324;
   box-shadow: var(--shadow);
 }
@@ -2000,7 +2000,7 @@ textarea {
   }
 
   .hero-photo-card {
-    min-height: 26rem;
+    aspect-ratio: 1180 / 1333;
   }
 
   .testimonial-editorial-card {
