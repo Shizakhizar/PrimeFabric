@@ -1163,7 +1163,7 @@ p {
 .media-blankets {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
-    url("public/Blanket.png") center/cover no-repeat;
+    url("public/Blankets & Pillows.png") center/cover no-repeat;
   background-color: #244f7b;
 }
 .media-quilts {
@@ -1193,13 +1193,54 @@ p {
     url("public/Uniforms.png") center/cover no-repeat;
   background-color: #355f8f;
 }
-.media-relief { background-color: #38527a; }
-.media-tshirts { background-color: #2a6694; }
-.media-pillows { background-color: #294b73; }
-.media-mosquito { background-color: #1f527d; }
-.media-school { background-color: #386a97; }
-.media-canvas { background-color: #264868; }
-.media-promotional { background-color: #2f5a87; }
+.media-relief {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Relief Supplies.png") center/cover no-repeat;
+  background-color: #38527a;
+}
+
+.media-tshirts {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/T-Shirts.png") center/cover no-repeat;
+  background-color: #2a6694;
+}
+
+.media-dining {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Dining & Kitchen.png") center/cover no-repeat;
+  background-color: #294b73;
+}
+
+.media-mosquito {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Mosquito Nets.png") center/cover no-repeat;
+  background-color: #1f527d;
+}
+
+.media-school {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/School Kits.png") center/cover no-repeat;
+  background-color: #386a97;
+}
+
+.media-canvas {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Canvas Bags.png") center/cover no-repeat;
+  background-color: #264868;
+}
+
+.media-familywear {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Family Wear.png") center/cover no-repeat;
+  background-color: #2f5a87;
+}
 
 .team-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2446,7 +2487,7 @@ textarea {
   position: relative;
   width: min(100%, 660px);
   height: 640px;
-  background-image: url("https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=1000&q=80");
+  background-image: url("public/Factory.png");
 }
 
 .about-photo-overlay {
@@ -2455,7 +2496,7 @@ textarea {
   bottom: 0;
   width: 320px;
   height: 380px;
-  background-image: url("https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80");
+  background-image: url("public/Team.png");
 }
 
 .about-editorial-copy {
@@ -2528,6 +2569,12 @@ textarea {
 .footer-links-block h4,
 .footer-phone {
   color: #c7ccd4;
+}
+
+.footer-brand-logo {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
 }
 
 .footer-editorial .brand small,
