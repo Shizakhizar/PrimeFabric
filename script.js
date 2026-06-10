@@ -10,6 +10,9 @@ const testimonialCards = document.querySelectorAll(".testimonial-card");
 const testimonialDots = document.querySelector(".testimonial-dots");
 const testimonialPrev = document.querySelector(".testimonial-prev");
 const testimonialNext = document.querySelector(".testimonial-next");
+const processTrack = document.querySelector(".process-grid");
+const processSteps = document.querySelectorAll(".process-step");
+const processDots = document.querySelector(".process-dots");
 const galleryItems = document.querySelectorAll(".gallery-item");
 const lightbox = document.querySelector(".lightbox");
 const lightboxTitle = document.querySelector(".lightbox-title");
@@ -168,6 +171,95 @@ if (testimonialCards.length > 0) {
       updateTestimonials();
     }, 4800);
   }
+}
+
+let activeProcessPage = 0;
+let processIntervalId = null;
+
+function getProcessColumns() {
+  if (window.innerWidth <= 900) {
+    return 1;
+  }
+
+  if (window.innerWidth <= 1100) {
+    return 2;
+  }
+
+  return 3;
+}
+
+function getProcessPageCount() {
+  const columns = getProcessColumns();
+  return Math.max(1, Math.ceil(processSteps.length / columns));
+}
+
+function renderProcessDots() {
+  if (!processDots) {
+    return;
+  }
+
+  const pageCount = getProcessPageCount();
+  processDots.innerHTML = "";
+
+  for (let index = 0; index < pageCount; index += 1) {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Go to process group ${index + 1}`);
+    dot.classList.toggle("active", index === activeProcessPage);
+    dot.addEventListener("click", () => {
+      activeProcessPage = index;
+      updateProcessSlider();
+      startProcessAutoplay();
+    });
+    processDots.appendChild(dot);
+  }
+}
+
+function updateProcessSlider() {
+  if (!processTrack) {
+    return;
+  }
+
+  const columns = getProcessColumns();
+  const pageCount = getProcessPageCount();
+  activeProcessPage = Math.min(activeProcessPage, pageCount - 1);
+  const startIndex = Math.min(activeProcessPage * columns, processSteps.length - 1);
+  const offset = processSteps[startIndex]?.offsetLeft ?? 0;
+  processTrack.style.transform = `translateX(-${offset}px)`;
+
+  processDots?.querySelectorAll("button").forEach((button, index) => {
+    button.classList.toggle("active", index === activeProcessPage);
+  });
+}
+
+function startProcessAutoplay() {
+  if (!processTrack || reduceMotion) {
+    return;
+  }
+
+  window.clearInterval(processIntervalId);
+  const pageCount = getProcessPageCount();
+
+  if (pageCount <= 1) {
+    return;
+  }
+
+  processIntervalId = window.setInterval(() => {
+    activeProcessPage = (activeProcessPage + 1) % pageCount;
+    updateProcessSlider();
+  }, 4200);
+}
+
+if (processTrack && processSteps.length > 0) {
+  renderProcessDots();
+  updateProcessSlider();
+  startProcessAutoplay();
+
+  window.addEventListener("resize", () => {
+    renderProcessDots();
+    updateProcessSlider();
+    startProcessAutoplay();
+  });
 }
 
 function openLightbox(title, copy) {

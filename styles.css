@@ -656,6 +656,88 @@ p {
   padding: 0.7rem 1rem;
 }
 
+@media (min-width: 1200px) {
+  :root {
+    --container: 1080px;
+  }
+
+  .nav {
+    min-height: 72px;
+  }
+
+  .brand-logo-nav {
+    height: 56px;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .site-header-light .nav-links a {
+    font-size: 0.94rem;
+  }
+
+  .site-header-light .nav-links .button-small {
+    min-height: 46px;
+    padding: 0.72rem 1.2rem;
+  }
+
+  .hero {
+    min-height: calc(100vh - 72px);
+    padding-top: 2.5rem;
+  }
+
+  .hero-tailor {
+    min-height: calc(100dvh - 72px);
+  }
+
+  .hero-tailor .hero-layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(460px, 0.98fr);
+    gap: 1.5rem;
+    min-height: calc(100dvh - 72px);
+  }
+
+  .hero-copy-tailor {
+    max-width: 31rem;
+    margin-left: 1rem;
+    padding: 1rem 0;
+  }
+
+  .hero-copy-tailor .eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 0.28em;
+  }
+
+  .hero-copy-tailor h1 {
+    margin: 0.65rem 0;
+    font-size: clamp(2.15rem, 3.45vw, 3.4rem);
+  }
+
+  .hero-copy-tailor .hero-text {
+    max-width: 22rem;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .hero-actions {
+    margin-top: 0.8rem;
+  }
+
+  .hero-actions .button {
+    min-height: 46px;
+    padding: 0.8rem 1.35rem;
+  }
+
+  .hero-photo-frame {
+    width: min(100%, 25rem);
+    transform: translateY(-1.25rem);
+  }
+
+  .hero-tailor::after {
+    height: 150px;
+  }
+}
+
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
@@ -720,9 +802,9 @@ p {
   width: 100%;
   aspect-ratio: 1180 / 1333;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  background:
+  /* background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    url("public/Hero.png") 75% center/contain no-repeat;
+    url("public/Hero.png") 75% center/92% auto no-repeat; */
   background-color: #0d1324;
   box-shadow: var(--shadow);
 }
@@ -847,7 +929,7 @@ p {
 .timeline-item,
 .process-step,
 .stat-card {
-  padding: 1.5rem;
+  padding: 0.85rem;
 }
 
 .section-heading.center {
@@ -910,40 +992,63 @@ p {
   clip-path: ellipse(70% 100% at 50% 0%);
 }
 
-.process-grid {
+.process-timeline {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.2rem;
   margin-top: 2rem;
+}
+
+.process-viewport {
+  overflow: hidden;
+  padding: 0.5rem 0 1rem;
+}
+
+.process-grid {
+  --process-columns: 3;
+  --process-gap: 1.2rem;
+  position: relative;
+  display: flex;
+  gap: var(--process-gap);
+  align-items: stretch;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .process-line {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(calc(100% - 6rem), 900px);
+  left: 0;
+  right: 0;
+  top: 8rem;
   height: 2px;
-  margin-top: 10.8rem;
   background: linear-gradient(90deg, transparent, var(--primary-bright), transparent);
-  opacity: 0.6;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.process-step {
+  position: relative;
+  flex: 0 0 calc((100% - (var(--process-gap) * (var(--process-columns) - 1))) / var(--process-columns));
+  min-height: auto;
 }
 
 .process-step span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 1rem;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.6rem;
   border-radius: 50%;
   background: rgba(0, 51, 102, 0.18);
   color: var(--secondary);
   font-weight: 800;
+  font-size: 0.8rem;
 }
 
 #process .section-heading h2 {
   color: #003366;
+  max-width: none;
+  font-size: clamp(2rem, 3.2vw, 3.1rem);
+  line-height: 1.08;
 }
 
 #process .process-step {
@@ -954,10 +1059,36 @@ p {
 
 #process .process-step h3 {
   color: #003366;
+  font-size: 0.84rem;
+  margin-bottom: 0.5rem;
 }
 
 #process .process-step p {
   color: rgba(0, 51, 102, 0.68);
+  font-size: 0.77rem;
+  line-height: 1.42;
+}
+
+.process-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.process-dots button {
+  width: 0.8rem;
+  height: 0.8rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 51, 102, 0.22);
+  transition: transform var(--ease), background var(--ease), opacity var(--ease);
+}
+
+.process-dots button.active {
+  background: #003366;
+  transform: scale(1.15);
 }
 
 .services-grid {
@@ -1029,11 +1160,39 @@ p {
   mix-blend-mode: screen;
 }
 
-.media-blankets { background-color: #244f7b; }
-.media-quilts { background-color: #2d5f92; }
-.media-bedsheets { background-color: #27557d; }
-.media-hospital { background-color: #1b456f; }
-.media-uniforms { background-color: #355f8f; }
+.media-blankets {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Blanket.png") center/cover no-repeat;
+  background-color: #244f7b;
+}
+.media-quilts {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Quilts & Mattresses.png") center/cover no-repeat;
+  background-color: #2d5f92;
+}
+
+.media-bedsheets {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Bed Sheets & Towels.png") center/cover no-repeat;
+  background-color: #27557d;
+}
+
+.media-hospital {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Hospital Products.png") center/cover no-repeat;
+  background-color: #1b456f;
+}
+
+.media-uniforms {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    url("public/Uniforms.png") center/cover no-repeat;
+  background-color: #355f8f;
+}
 .media-relief { background-color: #38527a; }
 .media-tshirts { background-color: #2a6694; }
 .media-pillows { background-color: #294b73; }
@@ -1143,14 +1302,15 @@ p {
 }
 
 .why-choose-section {
+  padding: 3.5rem 0 2.75rem;
   background: #003366;
 }
 
 .why-choose-heading {
   display: grid;
   justify-items: center;
-  gap: 1rem;
-  margin-bottom: 2.4rem;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -1162,9 +1322,9 @@ p {
   max-width: none;
   color: #eef4fb;
   font-family: "Inter", sans-serif;
-  font-size: clamp(2.8rem, 6vw, 4.9rem);
+  font-size: clamp(2.2rem, 4.8vw, 3.9rem);
   font-weight: 800;
-  line-height: 0.98;
+  line-height: 1;
   letter-spacing: -0.05em;
   white-space: normal;
 }
@@ -1180,17 +1340,17 @@ p {
 }
 
 .market-intro {
-  max-width: 48rem;
+  max-width: 42rem;
   margin: 0 auto;
   color: rgba(227, 236, 247, 0.76);
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 0.98rem;
+  line-height: 1.55;
 }
 
 .market-ecosystem {
   position: relative;
-  width: min(100%, 1100px);
-  min-height: 740px;
+  width: min(100%, 980px);
+  min-height: 560px;
   margin: 0 auto;
 }
 
@@ -1204,26 +1364,26 @@ p {
 }
 
 .orbit-large {
-  width: 860px;
-  height: 860px;
+  width: 680px;
+  height: 680px;
 }
 
 .orbit-medium {
-  width: 640px;
-  height: 640px;
+  width: 520px;
+  height: 520px;
 }
 
 .orbit-small {
-  width: 410px;
-  height: 410px;
+  width: 330px;
+  height: 330px;
 }
 
 .market-core {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 192px;
-  height: 192px;
+  width: 156px;
+  height: 156px;
   transform: translate(-50%, -50%);
   display: grid;
   place-items: center;
@@ -1239,8 +1399,8 @@ p {
 .market-core-inner {
   display: grid;
   place-items: center;
-  width: 152px;
-  height: 152px;
+  width: 124px;
+  height: 124px;
   border-radius: 50%;
   background: linear-gradient(180deg, rgba(10, 32, 63, 0.96), rgba(5, 16, 34, 0.98));
   color: #fff;
@@ -1250,7 +1410,7 @@ p {
 .market-core-inner strong {
   display: block;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
@@ -1259,7 +1419,7 @@ p {
   max-width: 10ch;
   margin-top: 0.35rem;
   color: rgba(224, 234, 245, 0.76);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   line-height: 1.35;
 }
 
@@ -1267,23 +1427,23 @@ p {
   position: absolute;
   display: grid;
   gap: 0.2rem;
-  min-width: 180px;
-  padding: 1rem 1.15rem;
+  min-width: 154px;
+  padding: 0.8rem 0.95rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
+  border-radius: 24px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 18px 35px rgba(0, 0, 0, 0.2);
+    0 14px 28px rgba(0, 0, 0, 0.2);
   color: #eef4fb;
   text-align: center;
 }
 
 .market-node::before {
   content: "";
-  width: 0.72rem;
-  height: 0.72rem;
-  margin: 0 auto 0.3rem;
+  width: 0.58rem;
+  height: 0.58rem;
+  margin: 0 auto 0.2rem;
   border-radius: 50%;
   background: #003366;
   box-shadow: 0 0 18px rgba(0, 51, 102, 0.65);
@@ -1292,12 +1452,12 @@ p {
 .market-node strong {
   display: block;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 0.92rem;
 }
 
 .market-node span {
   color: rgba(220, 232, 246, 0.66);
-  font-size: 0.86rem;
+  font-size: 0.74rem;
   line-height: 1.4;
 }
 
@@ -1892,6 +2052,10 @@ textarea {
 }
 
 @media (max-width: 1100px) {
+  .process-grid {
+    --process-columns: 2;
+  }
+
   .services-grid,
   .product-grid,
   .team-grid {
@@ -1947,12 +2111,15 @@ textarea {
   .two-column,
   .contact-layout,
   .strip-grid,
-  .process-grid,
   .masonry-grid,
   .footer-grid,
   .form-grid,
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    --process-columns: 1;
   }
 
   .hero-tailor .hero-layout {
@@ -2252,6 +2419,7 @@ textarea {
 }
 
 .about-editorial-section {
+  padding: 0.5rem 0;
   background: linear-gradient(90deg, #fcfaf7 0 34%, #e7ebf0 34% 100%);
 }
 
@@ -2732,11 +2900,12 @@ textarea {
 
 /* Tailoring services section */
 #services {
+  padding: 3.5rem 0;
   background: #fcfaf7;
 }
 
 .section-heading-services {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-heading-services .eyebrow {
@@ -2746,20 +2915,20 @@ textarea {
 .section-heading-services h2 {
   max-width: none;
   color: #132447;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
   line-height: 1.08;
 }
 
 .section-heading-services .services-intro {
-  max-width: 36rem;
+  max-width: 32rem;
   color: #203457;
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 #services .services-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 2.25rem;
+  gap: 1.5rem;
 }
 
 #services .service-card-tailor {
@@ -2776,26 +2945,26 @@ textarea {
 }
 
 #services .service-card-tailor h3 {
-  margin: 1.5rem 0 1rem;
+  margin: 1rem 0 0.75rem;
   color: #132447;
-  font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.35rem, 1.8vw, 1.7rem);
   line-height: 1.15;
 }
 
 #services .service-card-tailor p {
-  max-width: 16rem;
+  max-width: 14rem;
   color: #203457;
-  font-size: 0.98rem;
-  line-height: 1.65;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .service-icon {
   display: inline-grid;
   place-items: center;
-  width: 4rem;
-  height: 4rem;
+  width: 3.2rem;
+  height: 3.2rem;
   color: #97a4b5;
-  font-size: 2.2rem;
+  font-size: 1.7rem;
   line-height: 1;
 }
 
