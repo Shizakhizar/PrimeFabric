@@ -8,7 +8,7 @@
       name="description"
       content="Prime Fabric is a premium textile manufacturing and bulk stitching company in Pakistan serving hospitals, NGOs, institutions, and commercial clients."
     />
-    <link rel="icon" type="image/png" href="public/Favicon.png" />
+    <link rel="icon" type="image/png" sizes="30x30" href="public/favicon gray.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -47,9 +47,10 @@
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#services">Services</a>
-          <a href="#gallery">Blog</a>
+          <a href="#products">Products</a>
+          <a href="#testimonials">Testimonials</a>
           <a href="#contact">Contact</a>
-          <a href="#contact" class="button button-small button-tan magnetic">Visit Us</a>
+          <a href="#footer" class="button button-small button-tan magnetic">Visit Us</a>
         </nav>
       </div>
     </header>
@@ -102,13 +103,13 @@
             </div>
           </div>
 
-          <!--
           <div class="hero-visual hero-photo-wrap reveal" data-delay="0.15">
             <div class="hero-photo-frame">
-              <div class="hero-photo-card" data-parallax="12"></div>
+              <div class="hero-photo-card" data-parallax="12">
+                <img class="hero-photo-image" src="public/Hero.png" alt="Prime Fabric operations collage" />
+              </div>
             </div>
           </div>
-          -->
         </div>
       </section>
 
@@ -298,7 +299,7 @@
         </div>
       </section>
 
-      <section class="section team-editorial-section">
+      <section id="team" class="section team-editorial-section">
         <div class="container">
           <div class="section-heading team-editorial-heading reveal">
             <div class="team-label-row" aria-hidden="true">
@@ -314,18 +315,18 @@
           </div>
 
           <div class="tailor-showcase">
-            <article class="tailor-card reveal">
-              <div class="tailor-photo tailor-photo-peter"></div>
-              <div class="tailor-copy">
-                <p>Master Tailor</p>
-                <h3>Peter Mason</h3>
-              </div>
-            </article>
             <article class="tailor-card reveal" data-delay="0.08">
               <div class="tailor-photo tailor-photo-polly"></div>
               <div class="tailor-copy">
                 <p>Tailor</p>
                 <h3>Polly Wire</h3>
+              </div>
+            </article>
+            <article class="tailor-card reveal">
+              <div class="tailor-photo tailor-photo-peter"></div>
+              <div class="tailor-copy">
+                <p>Master Tailor</p>
+                <h3>Peter Mason</h3>
               </div>
             </article>
             <article class="tailor-card reveal" data-delay="0.16">
@@ -347,28 +348,37 @@
           </div>
 
           <div class="masonry-grid">
-            <button class="gallery-item reveal tall" data-title="Cutting Process" data-copy="Fabric preparation and accurate cutting for clean production flow.">
+            <button class="gallery-item gallery-cutting reveal gallery-item-feature" data-title="Cutting Process" data-copy="Fabric preparation and accurate cutting for clean production flow.">
               <span>Cutting Process</span>
             </button>
-            <button class="gallery-item reveal" data-delay="0.04" data-title="Stitching Process" data-copy="Controlled stitching stations focused on throughput and consistency.">
+            <button class="gallery-item gallery-stitching reveal" data-delay="0.04" data-title="Stitching Process" data-copy="Controlled stitching stations focused on throughput and consistency.">
               <span>Stitching Process</span>
             </button>
-            <button class="gallery-item reveal wide" data-delay="0.08" data-title="Tailoring Team" data-copy="Experienced tailoring teams producing high-volume textile solutions.">
+            <button class="gallery-item gallery-tailoring reveal" data-delay="0.08" data-title="Tailoring Team" data-copy="Experienced tailoring teams producing high-volume textile solutions.">
               <span>Tailoring Team</span>
             </button>
-            <button class="gallery-item reveal" data-delay="0.12" data-title="Fabric Selection" data-copy="Material selection aligned to quality, durability, and product function.">
+            <button class="gallery-item gallery-coordination reveal" data-delay="0.12" data-title="Director-Tailor Coordination" data-copy="Close coordination between direction and tailoring keeps production aligned at every stage.">
+              <span>Director-Tailor Coordination</span>
+            </button>
+            <button class="gallery-item gallery-fabric reveal" data-delay="0.16" data-title="Fabric Selection" data-copy="Material selection aligned to quality, durability, and product function.">
               <span>Fabric Selection</span>
             </button>
-            <button class="gallery-item reveal tall" data-delay="0.16" data-title="Quality Checks" data-copy="Inspection checkpoints help keep every order aligned with expectations.">
+            <button class="gallery-item gallery-planning reveal gallery-item-wide" data-delay="0.2" data-title="Order Planning" data-copy="Structured order planning helps balance volume, timing, and workflow precision.">
+              <span>Order Planning</span>
+            </button>
+            <button class="gallery-item gallery-quality reveal gallery-item-tall" data-delay="0.24" data-title="Quality Checks" data-copy="Inspection checkpoints help keep every order aligned with expectations.">
               <span>Quality Checks</span>
             </button>
-            <button class="gallery-item reveal" data-delay="0.2" data-title="Packaging" data-copy="Secure packaging workflows built for delivery readiness.">
+            <button class="gallery-item gallery-packaging reveal" data-delay="0.28" data-title="Packaging" data-copy="Secure packaging workflows built for delivery readiness.">
               <span>Packaging</span>
             </button>
-            <button class="gallery-item reveal" data-delay="0.24" data-title="Warehouse" data-copy="Organized inventory handling for smooth dispatch and supply coordination.">
+            <button class="gallery-item gallery-warehouse reveal" data-delay="0.32" data-title="Warehouse" data-copy="Organized inventory handling for smooth dispatch and supply coordination.">
               <span>Warehouse</span>
             </button>
-            <button class="gallery-item reveal wide" data-delay="0.28" data-title="Bulk Orders" data-copy="Large-scale orders managed with dependable scheduling and operational control.">
+            <button class="gallery-item gallery-dispatch reveal" data-delay="0.36" data-title="Final Dispatch" data-copy="Final dispatch is managed carefully to keep deliveries complete, secure, and on time.">
+              <span>Final Dispatch</span>
+            </button>
+            <button class="gallery-item gallery-bulk reveal" data-delay="0.4" data-title="Bulk Orders" data-copy="Large-scale orders managed with dependable scheduling and operational control.">
               <span>Bulk Orders</span>
             </button>
           </div>
@@ -376,7 +386,7 @@
       </section>
 
       
-      <section class="section why-choose-section">
+      <section id="network" class="section why-choose-section">
         <div class="container">
           <div class="section-heading center why-choose-heading reveal">
             <p class="eyebrow">We Work For</p>
@@ -396,7 +406,6 @@
             <div class="market-core">
               <div class="market-core-inner">
                 <strong>Prime Fabric</strong>
-                <span>Institutional Textile Partner</span>
               </div>
             </div>
 
@@ -436,7 +445,7 @@
         </div>
       </section>
 
-      <section class="section testimonial-editorial-section">
+      <section id="testimonials" class="section testimonial-editorial-section">
         <div class="container">
           <div class="section-heading testimonial-editorial-heading reveal">
             <p class="eyebrow">Testimonials</p>
@@ -448,14 +457,12 @@
                 <div class="testimonial-editorial-quote" aria-hidden="true">&ldquo;</div>
                 <div class="testimonial-editorial-body">
                   <p class="testimonial-copy">
-                    Prime Fabric handled our relief supply order with professionalism,
-                    speed, and consistency. Their ability to execute at scale made a real difference.
+                    Prime Fabric delivered durable and well-stitched uniforms with consistent quality across our bulk order.
                   </p>
                   <div class="testimonial-editorial-meta">
-                    <div class="testimonial-avatar testimonial-avatar-ngo"></div>
                     <div>
-                      <strong>NGO Procurement Team</strong>
-                      <span>Humanitarian Program</span>
+                      <strong>Cadet College</strong>
+                      <span>Institutional Uniform Program</span>
                     </div>
                   </div>
                 </div>
@@ -464,14 +471,12 @@
                 <div class="testimonial-editorial-quote" aria-hidden="true">&ldquo;</div>
                 <div class="testimonial-editorial-body">
                   <p class="testimonial-copy">
-                    Their hospital textile production was clean, reliable, and delivered
-                    according to requirements. The process felt well-managed from start to finish.
+                    Their team handled our relief supply requirements with discipline, timely delivery, and reliable packaging.
                   </p>
                   <div class="testimonial-editorial-meta">
-                    <div class="testimonial-avatar testimonial-avatar-health"></div>
                     <div>
-                      <strong>Operations Lead</strong>
-                      <span>Healthcare Client</span>
+                      <strong>NDMA</strong>
+                      <span>Relief Supply Requirements</span>
                     </div>
                   </div>
                 </div>
@@ -480,14 +485,12 @@
                 <div class="testimonial-editorial-quote" aria-hidden="true">&ldquo;</div>
                 <div class="testimonial-editorial-body">
                   <p class="testimonial-copy">
-                    We needed a structured uniform supplier who understood repeat orders.
-                    Prime Fabric gave us consistency and responsive communication.
+                    Prime Fabric provided clean, comfortable, and professionally stitched hospital textiles for our healthcare needs.
                   </p>
                   <div class="testimonial-editorial-meta">
-                    <div class="testimonial-avatar testimonial-avatar-school"></div>
                     <div>
-                      <strong>Admin Manager</strong>
-                      <span>Educational Institution</span>
+                      <strong>Rawalpindi Institute of Cardiology</strong>
+                      <span>Healthcare Textile Support</span>
                     </div>
                   </div>
                 </div>
@@ -496,14 +499,26 @@
                 <div class="testimonial-editorial-quote" aria-hidden="true">&ldquo;</div>
                 <div class="testimonial-editorial-body">
                   <p class="testimonial-copy">
-                    Their private label support helped us move faster without compromising
-                    production standards. Strong execution and dependable timelines.
+                    We found Prime Fabric reliable for bulk textile production, with strong attention to quality and delivery timelines.
                   </p>
                   <div class="testimonial-editorial-meta">
-                    <div class="testimonial-avatar testimonial-avatar-brand"></div>
                     <div>
-                      <strong>Brand Representative</strong>
-                      <span>Corporate Client</span>
+                      <strong>FBISE</strong>
+                      <span>Bulk Textile Production</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="testimonial-card testimonial-editorial-card">
+                <div class="testimonial-editorial-quote" aria-hidden="true">&ldquo;</div>
+                <div class="testimonial-editorial-body">
+                  <p class="testimonial-copy">
+                    Prime Fabric maintained professional standards in stitching, finishing, and timely fulfillment of our textile requirements.
+                  </p>
+                  <div class="testimonial-editorial-meta">
+                    <div>
+                      <strong>National Assembly of Pakistan</strong>
+                      <span>Textile Fulfillment Requirements</span>
                     </div>
                   </div>
                 </div>
@@ -552,7 +567,7 @@
               </div>
               <div class="contact-meta-item">
                 <small>Address</small>
-                <strong>Shop # 05, Chungi No. 4, Near Savour Food, Al-Majeed Plaza, Rawalpindi</strong>
+                <strong>2nd Floor , Rasheed Arcade ,Khyaban e Sirsyed  main service ,IJP Road ,Near Golden CNG, Rawalpindi</strong>
               </div>
             </div>
           </div>
@@ -560,7 +575,7 @@
       </section>
     </main>
 
-    <footer class="site-footer footer-editorial">
+    <footer id="footer" class="site-footer footer-editorial">
       <div class="footer-editorial-grid">
         <div class="footer-map-panel">
           <iframe
@@ -575,7 +590,7 @@
           <div class="footer-info-grid">
             <div>
               <a class="brand brand-footer" href="#home">
-                <img class="footer-brand-logo" src="public/Favicon.png" alt="Prime Fabric" />
+                <img class="footer-brand-logo" src="public/favicon gray.png" alt="Prime Fabric" />
               </a>
               <p class="footer-copy">
                 Premium textile manufacturing, stitching, and delivery solutions for institutions and commercial clients.
@@ -602,12 +617,15 @@
               </div>
             </div>
             <div class="footer-links-block">
-              <h4>Our Solutions</h4>
-              <a href="#home">Home</a>
-              <a href="#about">About</a>
-              <a href="#services">Services</a>
-              <a href="#gallery">Blog</a>
-              <a href="#contact">Contact</a>
+              <h4>Textile Solutions</h4>
+              <a href="#products">Uniforms</a>
+              <a href="#products">Hospital Textiles</a>
+              <a href="#products">Bedding &amp; Linens</a>
+              <a href="#products">Relief Supplies</a>
+              <a href="#products">School Kits</a>
+              <a href="#services">Workwear</a>
+              <a href="#services">Promotional Items</a>
+              <a href="#contact">Bulk Orders</a>
             </div>
           </div>
           <div class="footer-bottom footer-bottom-editorial">
