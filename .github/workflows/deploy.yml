@@ -14,16 +14,17 @@ jobs:
       - name: Get latest code
         uses: actions/checkout@v4
 
-      - name: Deploy to cPanel via FTPS
+      - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
           local-dir: ./
           server-dir: /
+          timeout: 60000
           exclude: |
             **/.git*
             **/.git*/**
