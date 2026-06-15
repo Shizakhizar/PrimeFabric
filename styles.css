@@ -790,6 +790,22 @@ p {
   padding: 0;
   display: flex;
   align-items: center;
+  animation: hero-float 6.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 9% 6%;
+  border-radius: 36px;
+  background: linear-gradient(120deg, transparent 16%, rgba(255, 255, 255, 0.18) 45%, transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translateX(-24%) skewX(-14deg);
+  animation: hero-sheen 5.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .hero-photo-card {
@@ -806,6 +822,7 @@ p {
     0 42px 140px rgba(0, 0, 0, 0.52);
   -webkit-mask-image: radial-gradient(circle at center, #000 46%, rgba(0, 0, 0, 0.95) 61%, rgba(0, 0, 0, 0.72) 76%, rgba(0, 0, 0, 0.32) 90%, transparent 100%);
   mask-image: radial-gradient(circle at center, #000 46%, rgba(0, 0, 0, 0.95) 61%, rgba(0, 0, 0, 0.72) 76%, rgba(0, 0, 0, 0.32) 90%, transparent 100%);
+  transition: box-shadow var(--ease), filter var(--ease);
 }
 
 .hero-photo-card::before {
@@ -817,6 +834,7 @@ p {
   background:
     radial-gradient(circle at center, rgba(34, 78, 126, 0.5) 0%, rgba(16, 38, 68, 0.46) 24%, rgba(7, 16, 31, 0.76) 58%, rgba(5, 10, 20, 0.24) 82%, rgba(5, 10, 20, 0) 100%);
   filter: blur(68px);
+  animation: hero-glow 6.8s ease-in-out infinite;
 }
 
 .hero-photo-card::after {
@@ -838,6 +856,9 @@ p {
   transform: translateY(-1.5rem);
   position: relative;
   z-index: 2;
+  animation: hero-image-drift 6.8s ease-in-out infinite;
+  transform-origin: center top;
+  will-change: transform;
 }
 
 .orbital-card {
@@ -2170,6 +2191,36 @@ textarea {
   font-size: 1.8rem;
 }
 
+.whatsapp-float {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 85;
+  display: inline-grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366 0%, #128c4a 100%);
+  color: #ffffff;
+  box-shadow: 0 18px 45px rgba(18, 140, 74, 0.34);
+  transition: transform var(--ease), box-shadow var(--ease), filter var(--ease);
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 55px rgba(18, 140, 74, 0.42);
+  filter: saturate(1.05);
+}
+
+.whatsapp-float svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -2194,6 +2245,44 @@ textarea {
   0%,
   100% { transform: translate3d(0, 0, 0) rotate(0deg); }
   50% { transform: translate3d(20px, -18px, 0) rotate(6deg); }
+}
+
+@keyframes hero-float {
+  0%,
+  100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -16px, 0); }
+}
+
+@keyframes hero-image-drift {
+  0%,
+  100% { transform: translateY(-1.5rem) scale(1); }
+  50% { transform: translateY(-2rem) scale(1.025); }
+}
+
+@keyframes hero-glow {
+  0%,
+  100% {
+    opacity: 0.88;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes hero-sheen {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(-26%) skewX(-14deg);
+  }
+  18% { opacity: 0; }
+  42% { opacity: 0.9; }
+  58% {
+    opacity: 0;
+    transform: translateX(24%) skewX(-14deg);
+  }
 }
 
 @keyframes shimmer {
@@ -2445,7 +2534,6 @@ textarea {
   }
 
   .hero-photo-image {
-    transform: none;
     object-fit: cover;
     object-position: center;
   }
@@ -2704,6 +2792,13 @@ textarea {
 
   .testimonial-editorial-meta strong {
     font-size: 1.35rem;
+  }
+
+  .whatsapp-float {
+    right: 1rem;
+    bottom: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 }
 
