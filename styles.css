@@ -3391,16 +3391,17 @@ textarea {
 }
 
 #services .service-card-tailor {
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  overflow: visible;
-  transform: none !important;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(19, 36, 71, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 18px 40px rgba(19, 36, 71, 0.08);
+  overflow: hidden;
 }
 
 #services .service-card-tailor::after {
-  display: none;
+  inset: 1rem;
+  border-radius: 22px;
 }
 
 #services .service-card-tailor h3 {
@@ -3411,10 +3412,53 @@ textarea {
 }
 
 #services .service-card-tailor p {
-  max-width: 14rem;
+  max-width: none;
   color: #203457;
   font-size: 0.88rem;
   line-height: 1.5;
+}
+
+.service-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 190px;
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(19, 36, 71, 0.08), rgba(19, 36, 71, 0.22)),
+    #dbe2eb;
+}
+
+.service-photo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(19, 36, 71, 0.2) 100%);
+  pointer-events: none;
+}
+
+.service-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: rgba(19, 36, 71, 0.62);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.service-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--ease);
+}
+
+#services .service-card-tailor:hover .service-photo {
+  transform: scale(1.04);
 }
 
 .service-icon {
@@ -3422,6 +3466,9 @@ textarea {
   place-items: center;
   width: 3.2rem;
   height: 3.2rem;
+  margin: 0.9rem 0 0;
+  border-radius: 999px;
+  background: rgba(233, 238, 244, 0.92);
   color: #97a4b5;
   font-size: 1.7rem;
   line-height: 1;
