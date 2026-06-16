@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://primefabric.pk/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^www\.primefabric\.pk$ [NC]
+RewriteRule ^(.*)$ https://primefabric.pk/$1 [L,R=301]
