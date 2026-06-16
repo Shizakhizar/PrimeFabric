@@ -14,21 +14,65 @@ jobs:
       - name: Get latest code
         uses: actions/checkout@v4
 
-      - name: Deploy to cPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          local-dir: ./
-          server-dir: /
-          timeout: 120000
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/node_modules/**
-            README.md
-            PrimeFabric.zip
+      - name: Prepare deploy folder
+        run: |
+          rm -rf deploy
+          mkdir -p deploy
+
+          cp index.html deploy/
+          cp styles.css deploy/
+          cp script.js deploy/
+
+          if [ -f "Logo.png" ]; then cp Logo.png deploy/; fi
+          if [ -f "logo.png" ]; then cp logo.png deploy/; fi
+          if [ -f "robots.txt" ]; then cp robots.txt deploy/; fi
+          if [ -f "sitemap.xml" ]; then cp sitemap.xml deploy/; fi
+          if [ -d "public" ]; then cp -r public deploy/public; fi
+
+          echo "Prepared files:"
+          find deploy -maxdepth 3 -type f
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Deploy to cPanel with retry
+        shell: bash
+        run: |
+          for attempt in 1 2 3 4 5; do
+            echo "Deployment attempt $attempt..."
+
+            lftp -u "${{ secrets.FTP_USERNAME }}","${{ secrets.FTP_PASSWORD }}" "${{ secrets.FTP_SERVER }}" <<EOF
+          set ftp:passive-mode on
+          set ftp:ssl-allow no
+          set net:timeout 180
+          set net:max-retries 5
+          set net:reconnect-interval-base 10
+          set net:reconnect-interval-multiplier 2
+          set cmd:fail-exit yes
+
+          mirror -R ./deploy/ / \
+            --verbose \
+            --only-newer \
+            --parallel=1 \
+            --exclude-glob .git/ \
+            --exclude-glob .github/ \
+            --exclude-glob node_modules/ \
+            --exclude-glob PrimeFabric.zip \
+            --exclude-glob README.md
+
+          bye
+          EOF
+
+            if [ $? -eq 0 ]; then
+              echo "Deployment successful."
+              exit 0
+            fi
+
+            echo "Deployment failed on attempt $attempt. Retrying in 20 seconds..."
+            sleep 20
+          done
+
+          echo "Deployment failed after 5 attempts."
+          exit 1
