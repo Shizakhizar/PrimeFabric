@@ -23,8 +23,10 @@ jobs:
           cp styles.css deploy/
           cp script.js deploy/
 
+          if [ -f ".htaccess" ]; then cp .htaccess deploy/; fi
           if [ -f "Logo.png" ]; then cp Logo.png deploy/; fi
           if [ -f "logo.png" ]; then cp logo.png deploy/; fi
+          if [ -f "favicon.png" ]; then cp favicon.png deploy/; fi
           if [ -f "robots.txt" ]; then cp robots.txt deploy/; fi
           if [ -f "sitemap.xml" ]; then cp sitemap.xml deploy/; fi
           if [ -d "public" ]; then cp -r public deploy/public; fi

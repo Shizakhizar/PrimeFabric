@@ -1,7 +1,13 @@
 RewriteEngine On
 
+# Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://primefabric.pk/$1 [L,R=301]
 
+# Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.primefabric\.pk$ [NC]
 RewriteRule ^(.*)$ https://primefabric.pk/$1 [L,R=301]
+
+# Redirect index.html to homepage
+RewriteCond %{THE_REQUEST} /index\.html [NC]
+RewriteRule ^index\.html$ https://primefabric.pk/ [L,R=301]

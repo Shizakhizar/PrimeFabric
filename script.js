@@ -10,6 +10,8 @@ const testimonialCards = document.querySelectorAll(".testimonial-card");
 const testimonialDots = document.querySelector(".testimonial-dots");
 const testimonialPrev = document.querySelector(".testimonial-prev");
 const testimonialNext = document.querySelector(".testimonial-next");
+const servicesGrid = document.querySelector("#services .services-grid");
+const serviceCards = document.querySelectorAll("#services .service-card-tailor");
 const processTrack = document.querySelector(".process-grid");
 const processSteps = document.querySelectorAll(".process-step");
 const processDots = document.querySelector(".process-dots");
@@ -171,6 +173,68 @@ if (testimonialCards.length > 0) {
       updateTestimonials();
     }, 4800);
   }
+}
+
+let activeServiceGroup = 0;
+let serviceSlideshowId = null;
+
+function updateServiceGridHeight() {
+  if (!servicesGrid || serviceCards.length === 0) {
+    return;
+  }
+
+  const tallestCard = Array.from(serviceCards).reduce((height, card) => {
+    return Math.max(height, card.offsetHeight);
+  }, 0);
+  const columns = window.innerWidth <= 640 ? 1 : 2;
+  const rows = Math.ceil(2 / columns);
+  const gap = 24;
+  const totalHeight = tallestCard * rows + gap * Math.max(rows - 1, 0);
+
+  servicesGrid.style.setProperty("--service-card-height", `${tallestCard}px`);
+  servicesGrid.style.height = `${totalHeight}px`;
+}
+
+function updateServiceSlideshow() {
+  if (serviceCards.length === 0) {
+    return;
+  }
+
+  const cardsPerGroup = 2;
+
+  serviceCards.forEach((card, index) => {
+    const groupIndex = Math.floor(index / cardsPerGroup);
+    const positionInGroup = index % cardsPerGroup;
+    const isActive = groupIndex === activeServiceGroup;
+
+    card.style.setProperty("--service-column", String(positionInGroup));
+    card.style.setProperty("--service-row", String(positionInGroup));
+    card.classList.toggle("is-active", isActive);
+    card.setAttribute("aria-hidden", String(!isActive));
+  });
+}
+
+function startServiceSlideshow() {
+  const groupCount = Math.ceil(serviceCards.length / 2);
+
+  if (groupCount <= 1 || reduceMotion) {
+    return;
+  }
+
+  window.clearInterval(serviceSlideshowId);
+  serviceSlideshowId = window.setInterval(() => {
+    activeServiceGroup = (activeServiceGroup + 1) % groupCount;
+    updateServiceSlideshow();
+  }, 3000);
+}
+
+if (servicesGrid && serviceCards.length > 0) {
+  updateServiceGridHeight();
+  updateServiceSlideshow();
+  startServiceSlideshow();
+
+  window.addEventListener("load", updateServiceGridHeight);
+  window.addEventListener("resize", updateServiceGridHeight);
 }
 
 let activeProcessPage = 0;
